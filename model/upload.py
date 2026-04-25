@@ -1,6 +1,6 @@
 import os
 import json
-import uuid
+ 
 
 UPLOAD_FOLDER = "uploads"
 HISTORY_FILE = "history.json"
@@ -9,9 +9,9 @@ HISTORY_FILE = "history.json"
 def save_image_and_manage(uploaded_file):
     os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-    # unique name
-    ext = uploaded_file.name.split(".")[-1]
-    filename = str(uuid.uuid4()) + "." + ext
+     
+    # ext = uploaded_file.name.split(".")[-1]
+    # filename = str(uuid.uuid4()) + "." + ext
     file_path = os.path.join(UPLOAD_FOLDER,uploaded_file.name )
 
     # save file
@@ -29,7 +29,7 @@ def save_image_and_manage(uploaded_file):
     else:
         history = []
 
-    # 🟢 REMOVE DUPLICATES (IMPORTANT)
+     
     history = [h for h in history if h != file_path]
 
     # add new image

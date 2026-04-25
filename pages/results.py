@@ -4,33 +4,28 @@ import os
 from model.recommender import extract_feature
 from model.knnmodel import get_neighbors
 from utils.helper import load_product_from_image
-
-# ---------------- PAGE CONFIG ----------------
+ 
 st.set_page_config(page_title="Results", layout="wide")
 
 st.title("🛍️ Recommended Products")
-
-# ---------------- CHECK SESSION ----------------
+ 
 if "query_image" not in st.session_state:
     st.warning("No image selected. Go back to home.")
     st.stop()
 
 img_path = st.session_state["query_image"]
-
-
-# ---------------- SHOW SELECTED IMAGE ----------------
+  
 st.subheader("🔍 Selected Image")
 
 col1, col2 = st.columns([1, 2])
-
-# LEFT SIDE → IMAGE
+ 
 with col1:
     if os.path.exists(img_path):
         st.image(img_path)
     else:
         st.write("Image not found")
 
-# RIGHT SIDE → DETAILS
+ 
 with col2:
        
        product_json = load_product_from_image(img_path)
@@ -40,7 +35,7 @@ with col2:
        if product_json:
 
         data = product_json.get("data", {}) if product_json else {}
-        # data = product_json.get("data", {})
+         
 
         st.markdown(f"## {data.get('productDisplayName', 'Unknown')}")
 
@@ -54,16 +49,14 @@ with col2:
 
        else:
         st.warning("No product details found")
- 
-# ---------------- FEATURE EXTRACTION ----------------
+  
 features = extract_feature(img_path)
-
-# ---------------- GET RECOMMENDATIONS ----------------
+ 
 indices, filenames = get_neighbors(features)
 
 st.subheader("✨ Similar Products")
 
-# ---------------- DISPLAY GRID ----------------
+ 
 cols = st.columns(5)
 
 for i, idx in enumerate(indices):
@@ -80,10 +73,10 @@ for i, idx in enumerate(indices):
         else:
             st.write("No Image")
 
-        # ✅ LOAD PRODUCT JSON PER IMAGE
+         
         product_json = load_product_from_image(rec_img)
 
-        # Myntra JSON format
+    
         data = product_json.get("data", {}) if product_json else {}
 
         # ---------------- PRODUCT DETAILS ----------------

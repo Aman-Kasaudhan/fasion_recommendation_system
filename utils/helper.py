@@ -10,7 +10,7 @@ STYLE_FOLDER = "fashion-dataset/styles"
 
 def load_product_from_image(img_path):
     try:
-        # extract id from image
+      
         product_id = os.path.basename(img_path).split(".")[0]
 
         json_path = os.path.join(STYLE_FOLDER, product_id + ".json")
