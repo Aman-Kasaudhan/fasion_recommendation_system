@@ -3,12 +3,12 @@ import os
 
 # load data
 def load_data():
-    df = pd.read_csv("fashion-dataset/styles.csv", on_bad_lines='skip')
+    df = pd.read_csv("fashion_dataset/styles.csv", on_bad_lines='skip')
     df = df.dropna().reset_index(drop=True)
 
     # create image path
     df['img_path'] = df['id'].apply(
-        lambda x: os.path.join("fashion-dataset", "images", str(x) + ".jpg")
+        lambda x: os.path.join("fashion_dataset", "images", str(x) + ".jpg")
     )
 
     # ✅ convert columns to lowercase ONCE (faster search)

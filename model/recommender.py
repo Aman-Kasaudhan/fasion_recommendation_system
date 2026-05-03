@@ -5,12 +5,12 @@ import tensorflow
 from tensorflow.keras.preprocessing import image
 # from tensorflow.keras.layers import GlobalMaxPooling2D
 from tensorflow.keras.applications.resnet50 import ResNet50,preprocess_input
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import os
 
 
-model=pickle.load(open('fashion-dataset/modelfashion.pkl','rb'))
-
+model=pickle.load(open('model/modelfashion.pkl','rb'))
+# C:\projects\fashion\model\modelfashion.pkl
 
 def extract_feature(img_path):
     img=image.load_img(img_path,target_size=(224,224))

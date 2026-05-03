@@ -1,8 +1,8 @@
 import pickle
 from sklearn.neighbors import NearestNeighbors
 
-features = pickle.load(open("fashion-dataset/features.pkl", "rb"))
-filenames = pickle.load(open("fashion-dataset/filenames.pkl", "rb"))
+features = pickle.load(open("model/features.pkl", "rb"))
+filenames = pickle.load(open("model/filenames.pkl", "rb"))
 
 neighbors = NearestNeighbors(n_neighbors=6, algorithm='brute', metric='euclidean')
 neighbors.fit(features)

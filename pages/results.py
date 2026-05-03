@@ -27,7 +27,7 @@ with col1:
 
  
 with col2:
-       
+    #    print(img_path)
        product_json = load_product_from_image(img_path)
 
         # Myntra JSON format
@@ -67,8 +67,9 @@ for i, idx in enumerate(indices):
             st.image(rec_img)
             # st.image(img_path)
             if st.button("View", key=f"img_{i}"):
-                st.session_state["query_image"] = img_path
+                st.session_state["query_image"] = rec_img
                 st.switch_page("pages/results.py")
+                # pass
 
         else:
             st.write("No Image")
