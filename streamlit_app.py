@@ -1,5 +1,6 @@
 import streamlit as st
 import os
+
 from PIL import Image
 
 from model.upload import save_image_and_manage
@@ -8,7 +9,6 @@ from model.search import search_products,load_data   # 👈 add this
 
 st.set_page_config(page_title="Fashion App", layout="wide")
 
- 
 st.title("🛍️ Fashion Recommendation System")
 
 df=load_data()

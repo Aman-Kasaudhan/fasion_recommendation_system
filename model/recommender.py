@@ -7,9 +7,14 @@ from tensorflow.keras.preprocessing import image
 from tensorflow.keras.applications.resnet50 import ResNet50,preprocess_input
 # import matplotlib.pyplot as plt
 import os
+import streamlit as st
+@st.cache_resource
+def load_model():
+    with open("model/modelfashion.pkl", "rb") as f:
+        return pickle.load(f)
 
-
-model=pickle.load(open('model/modelfashion.pkl','rb'))
+model = load_model()
+# model=pickle.load(open('model/modelfashion.pkl','rb'))
 # C:\projects\fashion\model\modelfashion.pkl
 
 def extract_feature(img_path):

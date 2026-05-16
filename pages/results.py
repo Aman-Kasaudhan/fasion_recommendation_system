@@ -4,7 +4,7 @@ import os
 from model.recommender import extract_feature
 from model.knnmodel import get_neighbors
 from utils.helper import load_product_from_image
- 
+from model.upload import save_image_and_manage
 st.set_page_config(page_title="Results", layout="wide")
 
 st.title("🛍️ Recommended Products")
@@ -24,6 +24,8 @@ with col1:
         st.image(img_path)
     else:
         st.write("Image not found")
+    # save_image_and_manage(img_path)
+    # print(img_path)
 
  
 with col2:
@@ -68,6 +70,8 @@ for i, idx in enumerate(indices):
             # st.image(img_path)
             if st.button("View", key=f"img_{i}"):
                 st.session_state["query_image"] = rec_img
+                # save_image_and_manage(rec_img)
+                
                 st.switch_page("pages/results.py")
                 # pass
 
