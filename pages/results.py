@@ -80,7 +80,7 @@ for i, idx in enumerate(indices):
 
             # count = os.listdir('.')
             if st.button("View", key=f"img_{i}"):
-                st.session_state["query_image"] = rec_img
+                st.session_state["query_image"] = x
                 # save_image_and_manage(rec_img)
                 
                 st.switch_page("pages/results.py")
