@@ -72,6 +72,7 @@ else:
         for i, img_path in enumerate(history):
             with cols[i % 5]:
                 if os.path.exists(img_path):
+                    img_path=img_path.replace("\\","/")
                     st.image(img_path)
 
                     if st.button("View", key=f"img_{i}"):
