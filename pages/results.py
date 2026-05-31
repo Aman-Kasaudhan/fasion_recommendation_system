@@ -64,21 +64,23 @@ cols = st.columns(5)
 
 for i, idx in enumerate(indices):
     with cols[i % 5]:
-        rec_img = filenames[idx].replace("/","\\")
+        # rec_img = filenames[idx]
         
-        new_path = rec_img.replace("..\\", "")
+        # new_path = rec_img.replace("..\\", "")
         
 
-        print(new_path)
         # rec_img = os.path.join(BASE_DIR, filenames[idx])
-        # print("path",rec_img)
-        if os.path.exists(new_path):
-            st.image(new_path)
+        rec_img=filenames[idx].replace("\\", "/")
+        x = rec_img.replace("../","")
+        # print(x)
+        print("path",rec_img)
+        if os.path.exists(x):
+            st.image(x)
             # st.image("../fashion_dataset/images/1911.jpg")
 
             # count = os.listdir('.')
             if st.button("View", key=f"img_{i}"):
-                st.session_state["query_image"] = new_path
+                st.session_state["query_image"] = rec_img
                 # save_image_and_manage(rec_img)
                 
                 st.switch_page("pages/results.py")
