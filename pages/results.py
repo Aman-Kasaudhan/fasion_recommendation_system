@@ -64,12 +64,18 @@ cols = st.columns(5)
 
 for i, idx in enumerate(indices):
     with cols[i % 5]:
-        rec_img1 = filenames[idx]
+         rec_img1 = filenames[idx].replace("/","\\")
+         
+         rec_img = rec_img1.replace("..\\", "")
+        
+        
+        
+        # rec_img1 = filenames[idx]
         
        
-        rec_img = os.path.join(BASE_DIR, filenames[idx])
-        if os.path.exists(rec_img1):
-            st.image(rec_img1)
+        # rec_img = os.path.join(BASE_DIR, filenames[idx])
+        if os.path.exists(rec_img):
+            st.image(rec_img)
             # st.image("../fashion_dataset/images/1911.jpg")
 
             # count = os.listdir('.')
