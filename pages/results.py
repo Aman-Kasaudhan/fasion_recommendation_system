@@ -7,8 +7,8 @@ from utils.helper import load_product_from_image
 from model.upload import save_image_and_manage
 st.set_page_config(page_title="Results", layout="wide")
 
-st.title("🛍️ Recommended Products")
- 
+st.title("🛍️ Recommended Product")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 if "query_image" not in st.session_state:
     st.warning("No image selected. Go back to home.")
     st.stop()
@@ -22,6 +22,7 @@ col1, col2 = st.columns([1, 2])
 with col1:
     if os.path.exists(img_path):
         st.image(img_path)
+        
     else:
         st.write("Image not found")
     # save_image_and_manage(img_path)
@@ -63,11 +64,16 @@ cols = st.columns(5)
 
 for i, idx in enumerate(indices):
     with cols[i % 5]:
-        rec_img = filenames[idx]
-
+        # rec_img = filenames[idx]
+        
+       
+        rec_img = os.path.join(BASE_DIR, filenames[idx])
         if os.path.exists(rec_img):
             st.image(rec_img)
-            # st.image(img_path)
+            # st.image("../fashion_dataset/images/1911.jpg")
+
+            # count = os.listdir('.')
+            # print("path",rec_img)
             if st.button("View", key=f"img_{i}"):
                 st.session_state["query_image"] = rec_img
                 # save_image_and_manage(rec_img)
@@ -77,17 +83,19 @@ for i, idx in enumerate(indices):
 
         else:
             st.write("No Image")
+            
 
          
-        product_json = load_product_from_image(rec_img)
+            product_json = load_product_from_image(rec_img)
 
     
-        data = product_json.get("data", {}) if product_json else {}
+            data = product_json.get("data", {}) if product_json else {}
+        
 
         # ---------------- PRODUCT DETAILS ----------------
-        st.markdown(f"**{data.get('productDisplayName', 'Unknown')}**")
-        st.write(f"Price :  ₹{data.get('price', 'N/A')}")
-        st.write(f"Color :  {data.get('baseColour', '')}")
+            st.markdown(f"**{data.get('productDisplayName', 'Unknown')}**")
+            st.write(f"Price :  ₹{data.get('price', 'N/A')}")
+            st.write(f"Color :  {data.get('baseColour', '')}")
         # st.write(f"👕 {data.get('articleType', '')}")
 
         # ---------------- CLICK TO RE-RECOMMEND ----------------

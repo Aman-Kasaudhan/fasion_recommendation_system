@@ -1,20 +1,14 @@
 import pickle
 from sklearn.neighbors import NearestNeighbors
 import streamlit as st
-@st.cache_resource
-def load_file():
-    with open("model/filenames.pkl", "rb") as f:
-        return pickle.load(f)
+import numpy as np
 
-filenames = load_file()
 
-def load_feature():
-    with open("model/features.pkl", "rb") as f:
-        return pickle.load(f)
 
-features = load_feature()
+filenames = pickle.load(open("model/filenames1.pkl","rb"))
 
-# features = pickle.load(open("model/features.pkl", "rb"))
+
+features = np.load("model/features1.npy")
 # filenames = pickle.load(open("model/filenames.pkl", "rb"))
 
 neighbors = NearestNeighbors(n_neighbors=6, algorithm='brute', metric='euclidean')

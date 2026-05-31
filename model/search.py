@@ -49,4 +49,4 @@ def search_products(df, name="", gender="", category="", subcategory="", color="
      
     result = result[result["img_path"].apply(os.path.exists)]
 
-    return result.head(20)
+    return result.head(10)
